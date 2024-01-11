@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  border-radius:15px;
+  color:#fff;
+  background: #334b93; /* Old browsers */
+  background: -moz-linear-gradient(top, #334b93 0%, #62b9d4 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #334b93 0%,#62b9d4 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #334b93 0%,#62b9d4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#334b93', endColorstr='#62b9d4',GradientType=0 ); /* IE6-9 */
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"], .form-signin input[type="password"] {
+  margin-bottom: 20px;
+  border-radius: 15px;
+  border:tr
+}
+@media (max-width: 768px){
+.form-signin{
+	margin-top:70%;
+}
+}

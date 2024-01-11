@@ -1,0 +1,347 @@
+* {
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    color: #333;
+}
+
+.background {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -10;
+}
+
+
+/*
+#bg-left {
+    background: url(../images/bg-bachiller-left.png) no-repeat fixed left;
+}
+
+#bg-right {
+    background: url(../images/bg-bachiller-right.png) no-repeat fixed right;
+}
+*/
+
+.recursos {
+    /*
+    background: url(../images/bg-recursos.png) no-repeat top right;
+    */
+}
+
+.obligaciones {
+    /*
+    background: url(../images/bg-obligaciones.png) no-repeat top left;
+    */
+}
+
+.documentos {
+    /*
+    background: url(../images/bg-documentos.png) no-repeat center right;
+    */
+}
+
+#premio {
+    position: relative;
+    z-index: 0;
+}
+
+#bg-premio-left {
+    background: url(../images/bg-premio-left.png);
+    background-position: top left;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    position: absolute;
+}
+
+#bg-premio-right {
+    background: url(../images/bg-premio-right.png) no-repeat bottom right;
+    background-position: bottom right;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    position: absolute;
+}
+
+.bg-amarillo {
+    background-color: #f8c62e !important;
+}
+
+.bg-azul {
+    background-color: #032875 !important;
+}
+
+.bg-azul-oscuro {
+    background-color: #334b93;
+}
+
+.bg-morado {
+    background-color: #5E2B7E;
+}
+
+.bg-azul-comfamiliar {
+    background-color: #004594;
+}
+
+.bg-gris {
+    background-color: #666666;
+}
+
+.txt-gris-oscuro {
+    color: #1A1A1A;
+}
+
+.txt-1 {
+    font-size: 0.9em;
+}
+
+.txt-2 {
+    font-size: 0.6em !important;
+}
+
+.txt-azul {
+    color: #0094B7;
+}
+
+.txt-amarillo {
+    color: #EBC636;
+}
+
+.txt-morado {
+    color: #5E2B7E;
+}
+
+.btn-weight-bold {
+    font-weight: bold !important;
+}
+
+a {
+    color: #1A1A1A;
+}
+
+a:hover {
+    color: #1A1A1A;
+    text-decoration: underline;
+}
+
+.btn {
+    border-radius: 15px !important;
+    font-size: 1em !important;
+}
+
+.bloque-radio {
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    -webkit-border-radius: 15px;
+}
+
+.proceso-2 .bloque-radio {
+    height: 200px;
+}
+
+
+/*MENÚ SUPERIOR*/
+
+#menu-superior {
+    border-bottom: 1px solid #808080;
+}
+
+#menu-superior li {
+    padding: 12px 7px;
+}
+
+#menu-superior a {
+    color: #1A1A1A;
+    font-size: 0.8rem;
+}
+
+#menu-superior ul .active {
+    background-color: #0094B7;
+}
+
+#menu-superior ul .active a {
+    color: #fff !important;
+}
+
+
+/*OBJETIVO*/
+
+#objetivo .container img {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    height: auto;
+}
+
+
+/*OBLIGACIONES*/
+
+#obligaciones li {
+    list-style-type: lower-latin;
+}
+
+
+/*DOCUMENTOS*/
+
+#documentos li {
+    /* list-style-type: decimal; */
+    color: #fff;
+}
+
+#documentos li .resaltado{
+    color: #fff;
+    font-weight: bold;
+}
+
+#documentos li > a{
+    color: #fff;
+}
+
+
+/*FORMULARIO*/
+
+.form-formulario {
+    width: 100%;
+    padding: 15px;
+    margin: 3rem auto 0;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #334b93;
+}
+
+.form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: calc(2.2rem + 2px);
+    padding: 5px 10px;
+    font-size: 16px;
+    border-color: transparent !important;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#inputTipoDocumento,
+#inputJornada,
+#inputDepartamento {
+    background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+    background-size: 8px 10px;
+}
+
+.form-control:focus {
+    z-index: 2;
+}
+
+#formulario label {
+    color: #fff;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#formulario .img-bachiller img {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+}
+
+
+/*ADJUNTAR*/
+
+.table-ext {
+    border-radius: 15px;
+    border: 1px solid #eee;
+}
+
+.table-no-striped thead tr:nth-of-type(odd),
+.table-no-striped tbody tr:nth-of-type(odd) {
+    background-color: inherit;
+}
+
+.table-ext thead,
+.table-ext tbody {
+    border: 1px solid #eee;
+}
+
+
+/*FOOTER*/
+
+#footer p {
+    font-weight: 200;
+}
+
+#redes {
+    font-size: 1.5rem;
+}
+
+#redes a {
+    margin: 0 10px;
+}
+
+#redes i {
+    color: #fff !important;
+}
+
+@media (min-width: 1200px) {
+    #objetivo .txt-objetivo {
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 991px) {
+    .proceso-2 .bloque-radio {
+        height: 230px;
+    }
+    #objetivo .container img {
+        width: 100%;
+    }
+    .documentos {
+        background-position: 150% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-superior {
+        padding: 5px 10px !important;
+    }
+    .bloque-col-mb {
+        margin-bottom: 1.5rem!important;
+    }
+    .proceso-2 .bloque-radio {
+        height: auto;
+    }
+    .recursos,
+    .obligaciones {
+        background-size: 40%;
+    }
+    .documentos {
+        background-position: top right;
+    }
+    #recursos .container,
+    #obligaciones .container,
+    #documentos .container {
+        padding-top: 40%;
+    }
+    #premio .row {
+        padding: 10rem 0 !important;
+    }
+    #premio .row .col-md-4 {
+        margin-bottom: 2rem;
+    }
+    #formulario .img-bachiller img {
+        margin-top: 50px;
+    }
+}
+
+li {
+    font-size: 0.9em;
+}

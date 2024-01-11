@@ -1,0 +1,49 @@
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    border-radius: 15px;
+    color: #fff;
+    background: #334b93;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #334b93 0%, #62b9d4 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #334b93 0%, #62b9d4 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #334b93 0%, #62b9d4 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#334b93', endColorstr='#62b9d4', GradientType=0);
+    /* IE6-9 */
+}
+
+.form-signin input[type="email"],
+.form-signin input[type="password"] {
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.ingreso-form {
+    margin-top: 4rem;
+}
+
+label {
+    color: #fff;
+}
+
+.ingreso-form .col {
+    vertical-align: middle !important;
+}
+
+.logo-comfamiliar-blanco {
+    margin: 0 auto;
+}
+
+.logo-comfamiliar-blanco img {
+    width: 80%;
+}
+
+.contrasena {
+    font-size: 0.8em;
+    text-align: center;
+}

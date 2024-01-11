@@ -1,0 +1,244 @@
+<app-header></app-header>
+
+<div class="background" id="bg-left"></div>
+<div class="background" id="bg-right"></div>
+
+<div *ngIf="institucion !== undefined" class="alert alert-block alert-success" dismisser="">
+    <h4 class="alert-heading"><small>Institución educativa </small> {{ institucion.nombreinstitucion }}</h4>
+
+    <ng-container *ngIf="esadmin">
+        <input [(ngModel)]="idinst"><button (click)="saveLocalStrore()">Buscar</button>
+    </ng-container>
+
+
+</div>
+
+<section id="adjuntar" class="pb-5 m-3" *ngIf="postulado === undefined && documentopresentado === undefined">
+    <!--
+    <div class="background" id="bg-left"></div>
+    <div class="background" id="bg-right"></div>
+
+-->
+
+    <div class="container container-fluid">
+        <button *ngIf="postulacionabierta" class="btn btn-lg bg-amarillo txt-gris-oscuro text-uppercase btn-weight-bold" (click)="inicializarNuevoPostulado()">Nuevo postulado</button>
+
+        <p>** Para el documento <b>Acta de elección</b>. Esta debe llevar la firma de todos los asistentes al consejo académico. En caso de haberse realizado de forma virtual debe llevar una nota al final de la misma firmada por el rector donde la aprueba
+            y menciona que se realizó de manera virtual por emergencia sanitaria (Covid 19) relacionando los nombres de las personas asistentes</p>
+        <p>** La <a href="https://bachillerbackend.comfamiliar.com/ficha_postulacion_bachiller_comfamiliar_2022.pdf" target="_blank">ficha de postulación</a> al premio, la puede descargar dando clic
+            <a href="https://bachillerbackend.comfamiliar.com/ficha_postulacion_bachiller_comfamiliar_2022.pdf" target="_blank">aquí.</a></p>
+
+        <table class="table table-striped table-light table-ext mt-3">
+            <thead class="bg-azul-oscuro">
+                <tr>
+                    <th class="text-white"></th>
+                    <th class="text-white">No. documento</th>
+                    <th class="text-white">Nombre completo</th>
+                    <th class="text-white">Requerimientos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let postulado of postulados">
+                    <td>
+                        <button class="btn btn-success" (click)="editarPostulado(postulado)">Editar</button>
+                    </td>
+                    <td>
+                        {{ postulado.numerodocumento }}
+                    </td>
+
+                    <td>
+                        {{ postulado.primernombre }} {{ postulado.segundonombre }} {{ postulado.primerapellido }} {{ postulado.segundoapellido }}
+                    </td>
+                    <td>
+                        <table *ngIf="postulado.documentospresentados.length > 0" class="table table-light table-no-striped" id="users-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Documento</th>
+                                    <th>Descargar</th>
+                                    <th>Cancelar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let doc of postulado.documentospresentados">
+                                    <div *ngIf="doc.requerimiento.estado == 'A'">
+                                        <td>
+                                            <strong>{{ doc.requerimiento.nombre }}</strong><small>( {{ doc.requerimiento.descripcion }}.) </small>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="doc.presentado === '0'">
+                                                <button type="button" class="btn btn-block btn-lg bg-amarillo txt-gris-oscuro text-uppercase btn-weight-bold" (click)="iniciarCargaDocumento(doc)">Subir documento</button>
+                                            </div>
+                                            <div *ngIf="doc.presentado !== '0'" >
+                                                <a href="https://bachillerbackend.comfamiliar.com/becado/download/{{ doc.id }}" class="btn btn-block btn-lg btn-success txt-gris-oscuro text-uppercase btn-weight-bold"><i class="fa fa-download"></i>Descargar</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="doc.presentado !== '0'">
+                                                <button  class="btn btn-lg btn-danger text-uppercase" (click)="cancelarUpload(doc)">Eliminar</button>
+                                            </div>
+                                        </td>
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section *ngIf="postulado !== undefined && postulacionabierta" id="formulario" class="pb-5 m-3">
+    <div class="container container-fluid form-formulario">
+        <form #f="ngForm" ngNativeValidate (ngSubmit)="registrarPostulado(f)" autocomplete="off">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Digite los datos del estudiante que la institución va a postular</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="inputTipoDocumento">Tipo de documento</label>
+                    <select type="text" [(ngModel)]="postulado.tipodocumento" name="tipodocumento" class="form-control" id="inputTipoDocumento" placeholder="Seleccione documento" required autofocus>
+                    <option [value] = '1'>Tarjeta de identidad</option>
+                    <option [value] = '2'>Cédula de ciudadanía</option>
+                </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputNumeroDocumento">Número de documento</label>
+                    <input type="text" [(ngModel)]="postulado.numerodocumento" name="numerodocumento" class="form-control" id="inputNumeroDocumento" placeholder="" (change)="validarPostulado()">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPrimerApellido">Primer apellido</label>
+                    <input type="text" [(ngModel)]="postulado.primerapellido" name="primerapellido" class="form-control" id="inputPrimerApellido" placeholder="" required autofocus onkeyup="javascript:this.value=this.value.toUpperCase();">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputOtrosApellidos">Otros apellidos</label>
+                    <input type="text" [(ngModel)]="postulado.segundoapellido" name="segundoapellido" class="form-control" id="inputinputOtrosApellidosPrimerApellido" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPrimerNombre">Primer nombre</label>
+                    <input type="text" [(ngModel)]="postulado.primernombre" name="primernombre" class="form-control" id="inputPrimerNombre" placeholder="" required autofocus>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputOtrosNombres">Otros nombres</label>
+                    <input type="text" [(ngModel)]="postulado.segundonombre" name="segundonombre" class="form-control" id="inputOtrosNombres" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputgenero">Genero</label>
+                    <select type="text" [(ngModel)]="postulado.genero" name="tipodocumento" class="form-control" id="inputTipoDocumento" placeholder="Seleccione documento" required autofocus>
+                    <option [value] = '1'>Masculino</option>
+                    <option [value] = '2'>Femenino</option>
+                </select>
+                </div>
+                <div class="col-md-6">
+                    {{postulado.esafiliado}}
+                </div>
+                <div class="col-md-6">
+                    <label for="inputTelefonoFijo">Teléfono fijo</label>
+                    <input type="text" [(ngModel)]="postulado.telefonofijo" name="telefonofijo" class="form-control" id="inputTelefonoFijo" placeholder="" required autofocus>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputTelefonoMovil">Teléfono móvil</label>
+                    <input type="text" [(ngModel)]="postulado.telefonomovil" name="telefonomovil" class="form-control" id="inputTelefonoMovil" placeholder="" required autofocus>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputEmail">Correo electrónico</label>
+                    <input type="email" [(ngModel)]="postulado.correoelectronico" name="correoelectronico" id="inputEmail" class="form-control" placeholder="" required autofocus>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputSede">Sede</label>
+                    <select [(ngModel)]="postulado.sede" name="sede" class="form-control" required>
+                    <option *ngFor="let sede of institucion.sedes" [value]="sede.nombreinstitucion">
+                        {{ sede.nombreinstitucion }}
+                    </option>
+                </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputJornada">Jornada</label>
+                    <select [(ngModel)]="postulado.jornada" name="jornada" type="text" class="form-control" id="inputJornada" placeholder="Seleccione jornada" required autofocus>
+                      <option selected>Seleccione jornada</option>
+                      <option>Mañana</option>
+                      <option>Tarde</option>
+                      <option>Noche</option>
+                      <option>Sabatina</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCiudad">Municipio residencia</label>
+                    <select [(ngModel)]="postulado.codigociudad" name="codigociudad" class="form-control" required>
+                    <option *ngFor="let ciudad of ciudades" [value]="ciudad.codigo">
+                        {{ ciudad.nombre }}
+                    </option>
+                </select>
+
+                </div>
+                <div class="col-md-12">
+                    <label for="inputCiudad">Direccion</label>
+                    <input type="text" [(ngModel)]="postulado.direccion" name="direccion" id="inputdireccion" class="form-control" placeholder="" required autofocus>
+                </div>
+
+                <div class="col-md-6">
+                    <button class="btn btn-lg bg-amarillo txt-gris-oscuro btn-block text-uppercase btn-weight-bold" type="submit">Enviar</button>
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="postulado !== undefined" class="btn btn-block btn-lg btn-danger text-uppercase" (click)="cancelarPostulacion()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container container-fluid formulario-form">
+
+        <!--        <form #f="ngForm" ngNativeValidate (ngSubmit)="registrarPostulado(f)" autocomplete="off">
+-->
+        <div class="row">
+
+            <div class="col-md-6">
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-md-6 img-bachiller" *ngIf="false">
+                <img src="assets/images/img-bachiller.jpg">
+            </div>
+        </div>
+        <!--
+            </form>
+            -->
+    </div>
+</section>
+
+<section *ngIf="postulado === undefined && documentopresentado !== undefined" id="formulario" class="pb-5 m-3">
+    <div class="container container-fluid form-formulario">
+        <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarDocumento(f)" autocomplete="off">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <label>Archivo adjunto (Tamaño máximo 2 Mb): {{ documentopresentado.requerimiento.descripcion }}</label>
+
+                    <fieldset class="form-group">
+                        <input (change)="seleccionImagen($event.target.files[0])" type="file" id="file" class="btn btn-lg btn-primary">
+                        <span class="custom-file-control"></span>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <fieldset class="form-group">
+                        <button class="btn btn-lg bg-amarillo txt-gris-oscuro btn-block text-uppercase" type="submit">Subir documento</button>
+
+                    </fieldset>
+                </div>
+                <div class="col-md-6">
+                    <fieldset class="form-group">
+                        <button class="btn btn-lg btn-danger txt-gris-oscuro btn-block text-uppercase" (click)="cancelarSubirarchivo()">Cancelar</button>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<app-footer></app-footer>

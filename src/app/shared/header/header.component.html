@@ -1,0 +1,32 @@
+<!--MENÚ SUPERIOR-->
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white p-0" id="menu-superior">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top"><img src="assets/images/logo-comfamiliar.png"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="'/reglamento'">Reglamento <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <ng-container *ngIf="codigodane">
+                        <a *ngIf="!institucionAutenticada()" class="nav-link" [routerLink]="['/login']" [queryParams]="{ codigodane: codigodane, password: password }">Postula Aquí</a>
+                    </ng-container>
+
+                    <ng-container *ngIf="!codigodane ">
+                        <a *ngIf="!institucionAutenticada() " class="nav-link " [routerLink]=" '/login' ">Postula Aquí</a>
+                    </ng-container>
+
+                    <a *ngIf="institucionAutenticada() " class="nav-link " [routerLink]=" '/postulacion' ">Postula Aquí</a>
+                </li>
+
+                <li class="nav-item " *ngIf="institucionAutenticada() ">
+                    <a class="nav-link " (click)="salirSistema() " [routerLink]=" '/reglamento' ">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

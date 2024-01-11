@@ -1,0 +1,45 @@
+<app-header></app-header>
+<!--
+    <div class="background" id="bg-left"></div>
+    <div class="background" id="bg-right"></div>
+-->
+<main role="main">
+    <div class="container ingreso-form">
+        <div class="row">
+            <div class="col-12">
+                <form #f="ngForm" class="form-signin" ngNativeValidate (ngSubmit)="validarInstitucion(f)" autocomplete="off">
+
+                    <div class="logo-comfamiliar-blanco">
+                        <img class="m-4" src="assets/images/logo-comfamiliar-blanco.png">
+                    </div>
+                    <label for="inputEmail" class="text-uppercase text-left">Código DANE</label>
+                    <input type="number" [(ngModel)]="codigodane" name="codigodane" id="codigodane" class="form-control" placeholder="Codigo dane de la institución" required autofocus>
+
+                    <label for="inputPassword" class="text-uppercase">Contraseña</label>
+                    <input type="password" [(ngModel)]="password" name="password" id="inputPassword text-left" class="form-control" placeholder="Contraseña" required>
+
+                    <button class="btn btn-lg bg-amarillo txt-gris-oscuro btn-block text-uppercase" type="submit">Ingresar</button>
+
+                    <div class="text-center mt-5">
+                        <a class="contrasena" (click)="recuperarContrasena()">Olvidé mi contraseña</a>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.col-md-6 -->
+            <!--
+                <div class="col-md-6 img-bachiller">
+    
+                        <img class="img-fluid" src="assets/images/img-bachiller.jpg">
+    
+                </div>
+                
+            -->
+            <!-- /.col-md6 -->
+        </div>
+        <!-- /.row -->
+
+    </div>
+</main>
+
+<app-footer></app-footer>
