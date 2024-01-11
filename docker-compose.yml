@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  bachiller:
+  app:
     build: .
     ports:
       - "4200:4200"

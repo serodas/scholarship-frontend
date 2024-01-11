@@ -1,27 +1,26 @@
-# Bachiller8
+# Scholarship Frontend
+The frontend project in angular consists of developing a web application that allows the best high school graduates from educational institutions to access a scholarship to continue their higher studies. The web application facilitates the application process, as it allows users to enter their personal, academic and socioeconomic data, as well as attach the documents required for evaluation. The web application also shows the status of the application and the results of the selection. The frontend project in angular 8.1.2 uses reusable components, services, directives, pipes and modules to create a dynamic, interactive and responsive user interface.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+# Preview
+![Preview](/scholarship-frontend.gif)
 
-## Development server
+# Stack of technologies
+- Angular 8.1.2
+- Angular Material
+- Bootstrap 4
+- Docker
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Instalation
 
-## Code scaffolding
+1. Clone the project
+```bash
+git clone https://github.com/serodas/scholarship-frontend.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Run `docker-compose up -d --build` to build the containers for the first time. From now on, you just need to run `docker-compose up -d`.
 
-## Build
+3. You should work inside the container `app`. This project is configured to work with [Remote Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). So you can run the command `Reopen in container` after opening the project.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+4. Enter http://localhost:4200/ according to configuration in docker-compose.ym
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
